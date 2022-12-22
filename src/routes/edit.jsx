@@ -2,10 +2,10 @@ import {
   Form,
   useLoaderData,
   redirect,
- } from "react-router-dom";
+} from "react-router-dom";
 import { updateContact } from "../contacts";
 
-export async function action({request, params}) {
+export async function action({ request, params }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
   console.log(updates);
@@ -20,14 +20,14 @@ export default function EditContact() {
     <Form method="post" id="contact-form">
       <p>
         <span>Name</span>
-        <input 
+        <input
           placeholder="First"
           aria-label="First name"
           type="text"
           name="first"
           defaultValue={contact.first}
         />
-        <input 
+        <input
           placeholder="Last"
           aria-label="Last name"
           type="text"
@@ -37,7 +37,7 @@ export default function EditContact() {
       </p>
       <label>
         <span>Twitter</span>
-        <input 
+        <input
           type="text"
           name="twitter"
           placeholder="@jack"
@@ -56,7 +56,7 @@ export default function EditContact() {
       </label>
       <label>
         <span>Notes</span>
-        <textarea 
+        <textarea
           name="notes"
           defaultValue={contact.notes}
           rows={6}
