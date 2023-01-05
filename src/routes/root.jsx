@@ -69,7 +69,6 @@ export default function Root() {
                           : ""
                     }
                   >
-                    <Link to={`contacts/${contact.id}`}>
                       {contact.first || contact.last ? (
                         <>
                           {contact.first} {contact.last}
@@ -78,7 +77,6 @@ export default function Root() {
                         <i>No Name</i>
                       )}{" "}
                       {contact.favorite && <span>★</span>}
-                    </Link>
                   </NavLink>
                 </li>
               ))}
