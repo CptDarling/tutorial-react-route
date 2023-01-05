@@ -7,7 +7,11 @@ import {
   redirect,
   useNavigation,
 } from "react-router-dom";
-import { getContacts, createContact } from "../contacts";
+
+import { 
+  getContacts,
+   createContact, 
+  } from "../contacts";
 
 export async function action() {
   const contact = await createContact();
