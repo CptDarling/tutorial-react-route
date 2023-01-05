@@ -12,6 +12,7 @@ import Root, {
   loader as rootLoader,
   action as rootAction,
 } from "./routes/root";
+
 import ErrorPage, { } from "./error-page";
 
 import Contact, {
@@ -46,6 +47,8 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId/destroy",
         action: destroyAction,
+        errorElement: <div>Oops! There was an error.</div>,
+        // errorElement: <ErrorPage />,
       },
     ],
   }
