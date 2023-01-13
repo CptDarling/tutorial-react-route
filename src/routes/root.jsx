@@ -10,17 +10,17 @@ import {
   useSubmit,
 } from "react-router-dom";
 
-import { 
+import {
   getContacts,
-   createContact, 
-  } from "../contacts";
+  createContact,
+} from "../contacts";
 
 export async function action() {
   const contact = await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
 }
 
-export async function loader( {request} ) {
+export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
@@ -32,8 +32,14 @@ export default function Root() {
   const navigation = useNavigation();
   const submit = useSubmit();
 
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has(
+      "q"
+    );
+
   useEffect(() => {
-      document.getElementById("q").value = q;
+    document.getElementById("q").value = q;
   }, [q]);
 
   return (
@@ -44,6 +50,7 @@ export default function Root() {
           <Form id="search-form" role="search">
             <input
               id="q"
+              className={searching ? "loading" : ""}
               aria-label="Search contacts"
               placeholder="Search"
               type="search"
@@ -56,7 +63,7 @@ export default function Root() {
             <div
               id="search-spinner"
               aria-hidden
-              hidden={true}
+              hidden={!searching}
             />
             <div
               className="sr-only"
@@ -82,14 +89,14 @@ export default function Root() {
                           : ""
                     }
                   >
-                      {contact.first || contact.last ? (
-                        <>
-                          {contact.first} {contact.last}
-                        </>
-                      ) : (
-                        <i>No Name</i>
-                      )}{" "}
-                      {contact.favorite && <span>★</span>}
+                    {contact.first || contact.last ? (
+                      <>
+                        {contact.first} {contact.last}
+                      </>
+                    ) : (
+                      <i>No Name</i>
+                    )}{" "}
+                    {contact.favorite && <span>★</span>}
                   </NavLink>
                 </li>
               ))}
