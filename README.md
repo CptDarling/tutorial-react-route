@@ -1,5 +1,5 @@
 # tutorial-react-vite
-A tutorial project for React that also employs Vite.
+A tutorial project for React that also employs Vite as a build tool.
 
 ## Some Useful Links
 
